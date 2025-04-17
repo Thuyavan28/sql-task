@@ -53,6 +53,18 @@ from user
 inner join bank on user.UserId=bank.UserId
 where AccBalance>=10000;
 
+-- task 2---
+update bank
+set AccBalance=500000
+where UserId=5002 or AccountNumber=458968;
+
+
+select user.Name,user.Phone,user.Address,bank.AccountNumber,bank.AccBalance,bank.Last_Transaction
+from user
+inner join bank on user.UserId=bank.UserId;
+
+
+
 -- 2 .simple to understand---
 
 create table Account(
@@ -83,6 +95,10 @@ where AccBalance<=10000;
 select * from Account
 where AccBalance>=10000;
 
+-- task 2---
+update Account set AccBalance=50000
+where AccountNumber=458968 OR Name='KAMESH';
+select * from Account
 
 
 
