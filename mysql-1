@@ -1,0 +1,89 @@
+create database bank;
+use bank;
+-- 1.complex more keys are added --
+create table user(
+UserId INT PRIMARY KEY auto_increment,
+Name varchar(100),
+Phone varchar(15),
+Address varchar(200)
+);
+create table bank(
+AccountNumber INT PRIMARY KEY,
+UserId int,
+AccBalance Decimal(10,2),
+Last_Transaction date,
+FOREIGN KEY bank(UserId) REFERENCES user(UserId)
+);
+insert into user (UserId,Name,Phone,Address) values
+(5001,'RAMESH','800896963','abc street'),
+(5002,'KAMESH','858967461','xyz street'),
+(5003,'KAMLESH','858964361','newbustand  street'),
+(5004,'VICKY','8589745461','small  street'),
+(5005,'LOKESH','858967461','big  street');
+select * from user;
+insert into bank (AccountNumber,UserId,AccBalance,Last_Transaction) values
+(145145,5001,50000,'2025-01-25'),
+(458968,5002,4500,'2024-05-29'),
+(779962,5003,15000,'2025-03-28'),
+(552796,5004,25000,'2024-02-15'),
+(718596,5005,100000,'2025-04-04');
+select user.Name,user.Phone,user.Address,bank.AccountNumber,bank.AccBalance,bank.Last_Transaction
+from user
+inner join bank on user.UserId=bank.UserId;
+
+-- comparsion operator --
+-- 1.=(equal) --
+select user.Name,user.Phone,user.Address,bank.AccountNumber,bank.AccBalance,bank.Last_Transaction
+from user
+inner join bank on user.UserId=bank.UserId
+where Name='KAMESH';
+-- 2. <> not equal --
+select user.Name,user.Phone,user.Address,bank.AccountNumber,bank.AccBalance,bank.Last_Transaction
+from user
+inner join bank on user.UserId=bank.UserId
+where Name<> 'KAMESH';
+-- 3.less than
+select user.Name,user.Phone,user.Address,bank.AccountNumber,bank.AccBalance,bank.Last_Transaction
+from user
+inner join bank on user.UserId=bank.UserId
+where AccBalance<=10000;
+-- 4.greater than
+select user.Name,user.Phone,user.Address,bank.AccountNumber,bank.AccBalance,bank.Last_Transaction
+from user
+inner join bank on user.UserId=bank.UserId
+where AccBalance>=10000;
+
+-- 2 .simple to understand---
+
+create table Account(
+UserId INT PRIMARY KEY auto_increment,
+Name varchar(100),
+AccountNumber INT,
+AccBalance Decimal(10,2),
+Last_Transaction date
+);
+insert into Account (UserId,Name,AccountNumber ,AccBalance ,Last_Transaction )values
+(5001,'RAMESH',145145,50000,'2025-01-25'),
+(5002,'KAMESH',458968,4500,'2024-05-29'),
+(5003,'KAMLESH',779962,15000,'2025-03-28'),
+(5004,'VICKY',552796,25000,'2024-02-15'),
+(5005,'LOKESH',718596,100000,'2025-04-04');
+select * from Account;
+-- relational operator--
+-- 1. =equal
+select * from Account
+where UserId=5003;
+-- 2.not equal <>
+select * from Account
+where UserId<>5003;
+-- 3.less than or eqaul to ---
+select * from Account
+where AccBalance<=10000;
+-- greater than or eqaul to --
+select * from Account
+where AccBalance>=10000;
+
+
+
+
+
